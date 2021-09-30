@@ -102,22 +102,25 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
+#line 8
  testRunner.Given("I launch the application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 9
+ testRunner.And("I click login link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                             "UserName",
                             "Password"});
                 table1.AddRow(new string[] {
-                            "admin",
-                            "password"});
-#line 7
+                            "woodrow",
+                            "Lacie@7402"});
+#line 10
  testRunner.And("I enter the following details", ((string)(null)), table1, "And ");
 #line hidden
-#line 10
+#line 13
  testRunner.And("I click login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
+#line 14
  testRunner.Then("I should see Employee details link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

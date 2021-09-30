@@ -1,36 +1,68 @@
-﻿using System;
+﻿using SpecflowNetCoreDemo.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TechTalk.SpecFlow;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using TechTalk.SpecFlow.Assist;
+using NUnit.Framework;
+using AventStack.ExtentReports;
+using AventStack.ExtentReports.Reporter;
 
 namespace SpecflowNetCoreDemo.Steps
 {
     [Binding]
     public sealed class LogInSteps
     {
+
+        //Anti Context Injection code - 100% wrong
+
+        //Step Definitions
+
+        LogInPage loginPage = null;
+
+
         [Given(@"I launch the application")]
         public void GivenILaunchTheApplication()
         {
-            ScenarioContext.Current.Pending();
+
+          
+           
+
+            IWebDriver webDriver = new ChromeDriver();
+            
+            webDriver.Navigate().GoToUrl("http://eaapp.somee.com/");
+            webDriver.Manage().Window.Maximize();
+            loginPage = new LogInPage(webDriver);
         }
+
+        [Given(@"I click login link")]
+        public void GivenIClickLoginLink()
+        {
+            loginPage.ClickLogin();
+        }
+
+
 
         [Given(@"I enter the following details")]
         public void GivenIEnterTheFollowingDetails(Table table)
         {
-            ScenarioContext.Current.Pending();
+            dynamic data = table.CreateDynamicInstance(); 
+            loginPage.Login((string)data.UserName, (string)data.Password);
         }
 
         [Given(@"I click login button")]
         public void GivenIClickLoginButton()
         {
-            ScenarioContext.Current.Pending();
+            loginPage.ClickLoginButton();
         }
 
         [Then(@"I should see Employee details link")]
         public void ThenIShouldSeeEmployeeDetailsLink()
         {
-            ScenarioContext.Current.Pending();
+            Assert.That(loginPage.IsEmployeeDetailsExist(), Is.True);
         }
 
     }
