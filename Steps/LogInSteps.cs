@@ -65,5 +65,11 @@ namespace SpecflowNetCoreDemo.Steps
             Assert.That(loginPage.IsEmployeeDetailsExist(), Is.True);
         }
 
+        [Given(@"I click the log off button")]
+        public void GivenIClickTheLogOffButton()
+        {
+            loginPage.ClickLogOff();
+        }
+
     }
 }

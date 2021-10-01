@@ -70,19 +70,78 @@ namespace SpecflowNetCoreDemo.Hooks
 
 
                 case ScenarioBlock.Given:
+
+                    if(_scenarioContext.TestError != null)
+                    {
+
+                        _scenario.CreateNode<Given>(_scenarioContext.TestError.Message + "\n" +
+                            _scenarioContext.TestError.StackTrace);
+
+                    }
+                    else
+                    {
+
+
+                        _scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text);
+                    }
                     _scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text);
                     break;
 
                 case ScenarioBlock.When:
-                    _scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text);
+                    if (_scenarioContext.TestError != null)
+                    {
+
+                        _scenario.CreateNode<Given>(_scenarioContext.TestError.Message + "\n" +
+                            _scenarioContext.TestError.StackTrace);
+
+                    }
+                    else
+                    {
+
+
+                        _scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text);
+                    }
+                    //_scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text);
+                    //break;
+                    //_scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text);
                     break;
 
                 case ScenarioBlock.Then:
-                    _scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text);
+                    if (_scenarioContext.TestError != null)
+                    {
+
+                        _scenario.CreateNode<Given>(_scenarioContext.TestError.Message + "\n" +
+                            _scenarioContext.TestError.StackTrace);
+
+                    }
+                    else
+                    {
+
+
+                        _scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text);
+                    }
+                    //_scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text);
+                    //break;
+                    //_scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text);
                     break;
 
                 default:
-                    _scenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text);
+                    if (_scenarioContext.TestError != null)
+                    {
+
+                        _scenario.CreateNode<Given>(_scenarioContext.TestError.Message + "\n" +
+                            _scenarioContext.TestError.StackTrace);
+
+                    }
+                    else
+                    {
+
+
+                        _scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text);
+                    }
+                    //_scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text);
+                    //break;
+                    //_scenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text);
 
                     break;
             }

@@ -25,6 +25,8 @@ namespace SpecflowNetCoreDemo.Pages
         public IWebElement btnLogin => WebDriver.FindElement(By.XPath("//input[@value='Log in']"));
         public IWebElement lnkEmployeeDetails => WebDriver.FindElement(By.XPath("//a[normalize-space()='Employee List']"));
 
+        public IWebElement logOff => WebDriver.FindElement(By.XPath("//a[normalize-space()='Log off']"));
+
         //Method for executing steps
 
         public void ClickLogin() => lnkLogin.Click();
@@ -39,6 +41,8 @@ namespace SpecflowNetCoreDemo.Pages
         public void ClickLoginButton() => btnLogin.Submit();
 
         public bool IsEmployeeDetailsExist() => lnkEmployeeDetails.Displayed;
+
+        public void ClickLogOff() => logOff.Click();
 
 
     }
