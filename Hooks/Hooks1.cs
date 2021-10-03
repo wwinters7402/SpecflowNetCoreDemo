@@ -47,7 +47,7 @@ namespace SpecflowNetCoreDemo.Hooks
             {
 
                 _scenarioContext = scenarioContext;
-                _scenario =_feature.CreateNode<Scenario>
+                _scenario = _feature.CreateNode<Scenario>
                     (scenarioContext.ScenarioInfo.Title, scenarioContext.ScenarioInfo.Description);
 
             }
@@ -71,35 +71,35 @@ namespace SpecflowNetCoreDemo.Hooks
 
                 case ScenarioBlock.Given:
 
-                    if(_scenarioContext.TestError != null)
+                    if (_scenarioContext.TestError != null)
                     {
 
-                        _scenario.CreateNode<Given>(_scenarioContext.TestError.Message + "\n" +
+                        _scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text).Fail("\n" + 
                             _scenarioContext.TestError.StackTrace);
+                            
 
                     }
                     else
                     {
 
 
-                        _scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text);
+                        _scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text).Pass("");
                     }
-                    _scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text);
+                    //_scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text);
                     break;
 
                 case ScenarioBlock.When:
                     if (_scenarioContext.TestError != null)
                     {
 
-                        _scenario.CreateNode<Given>(_scenarioContext.TestError.Message + "\n" +
+                        _scenario.CreateNode<When>(_scenarioContext.StepContext.StepInfo.Text).Fail("\n" +
                             _scenarioContext.TestError.StackTrace);
-
                     }
                     else
                     {
 
 
-                        _scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text);
+                        _scenario.CreateNode<When>(_scenarioContext.StepContext.StepInfo.Text).Pass("");
                     }
                     //_scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text);
                     //break;
@@ -110,7 +110,7 @@ namespace SpecflowNetCoreDemo.Hooks
                     if (_scenarioContext.TestError != null)
                     {
 
-                        _scenario.CreateNode<Given>(_scenarioContext.TestError.Message + "\n" +
+                        _scenario.CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text).Fail("\n" +
                             _scenarioContext.TestError.StackTrace);
 
                     }
@@ -118,7 +118,7 @@ namespace SpecflowNetCoreDemo.Hooks
                     {
 
 
-                        _scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text);
+                        _scenario.CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text).Pass("");
                     }
                     //_scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text);
                     //break;
@@ -129,15 +129,15 @@ namespace SpecflowNetCoreDemo.Hooks
                     if (_scenarioContext.TestError != null)
                     {
 
-                        _scenario.CreateNode<Given>(_scenarioContext.TestError.Message + "\n" +
+                        _scenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text).Fail("\n" +
                             _scenarioContext.TestError.StackTrace);
 
                     }
                     else
                     {
 
+                        _scenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text).Pass("");
 
-                        _scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text);
                     }
                     //_scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text);
                     //break;
@@ -147,19 +147,16 @@ namespace SpecflowNetCoreDemo.Hooks
             }
         }
 
-            [AfterTestRun]
-            public static void AfterTestRun()
-            {
+        [AfterTestRun]
+        public static void AfterTestRun()
+        {
             _extentReports.Flush();
-                
-            }
 
 
 
         }
-
     }
-
+}
 
     
     

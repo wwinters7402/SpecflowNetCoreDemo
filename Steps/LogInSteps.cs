@@ -71,5 +71,12 @@ namespace SpecflowNetCoreDemo.Steps
             loginPage.ClickLogOff();
         }
 
+        [Then(@"I close browser")]
+        public void ThenICloseBrowser()
+        {
+           
+        }
+
+
     }
 }
