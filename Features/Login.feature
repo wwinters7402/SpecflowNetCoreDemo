@@ -1,7 +1,7 @@
 ﻿Feature: Log In Automation
 	Login to EA Demo application
 
-@smoke
+@Regression
 Scenario: Perform Login of EA Application site
 
 #steps
@@ -13,7 +13,7 @@ Scenario: Perform Login of EA Application site
 	And I click login button
 	Then I should see Employee details link
 	
-@smoke
+@Regression
 	Scenario: Login Logoff
 
 	#Steps
